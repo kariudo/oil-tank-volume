@@ -1,0 +1,25 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build",
+			"type": "shell",
+			"command": "cmake",
+			"args": [
+				"-G",
+				"Unix Makefiles", // Adjust generator if needed
+				"-DCMAKE_BUILD_TYPE=Debug", // Adjust build type if needed
+				"-B", // Optional flag to specify build directory
+				"build", // Replace with your build directory
+				"-S", // Optional flag to specify source directory
+				".", // Replace . with your source directory if different
+			],
+			"presentation": {
+				"reveal": "always"
+			},
+			"problemMatcher": [
+				"$gcc"
+			]
+		}
+	]
+}

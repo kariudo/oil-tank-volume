@@ -1,0 +1,19 @@
+{
+  "name": "Devbox Remote Container",
+  "build": {
+    "dockerfile": "./Dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "jetpack-io.devbox",
+        "ms-vscode.cpptools-extension-pack",
+        "eamodio.gitlens",
+        "Codeium.codeium"
+      ]
+    }
+  },
+  "remoteUser": "devbox"
+}

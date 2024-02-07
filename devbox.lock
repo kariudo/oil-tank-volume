@@ -1,0 +1,45 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "cmake@latest": {
+      "last_modified": "2024-01-31T06:48:05Z",
+      "resolved": "github:NixOS/nixpkgs/5ad9903c16126a7d949101687af0aa589b1d7d3d#cmake",
+      "source": "devbox-search",
+      "version": "3.27.8",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/slgfvfhi4nbdms9h7p13rp998ls191az-cmake-3.27.8"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/m16f4yj9i3fgq5dkx7amcf2v9wp80kc7-cmake-3.27.8"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/rzgfrfrksq3szf29kdly4qzj1gjsgb30-cmake-3.27.8"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/jacf2kn4dfj99c3ywbvfyg6w53xvxsfl-cmake-3.27.8"
+        }
+      }
+    },
+    "gcc@latest": {
+      "last_modified": "2024-01-30T04:45:19Z",
+      "resolved": "github:NixOS/nixpkgs/222c1940fafeda4dea161858ffe6ebfc853d3db5#gcc",
+      "source": "devbox-search",
+      "version": "13.2.0",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/khnl8cg6b7g5r05sr0m45cfwvj8q5fh1-gcc-wrapper-13.2.0"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/lb6y9a5cf9fqvkp67y5cdzpy909zryhf-gcc-wrapper-13.2.0"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/8raiqilmkxxk2p297grxcxcdb3qvdn3n-gcc-wrapper-13.2.0"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/khkhbch4p1wjfl1g89gw1mszvvr7bzv0-gcc-wrapper-13.2.0"
+        }
+      }
+    }
+  }
+}
