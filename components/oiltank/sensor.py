@@ -23,8 +23,7 @@ OilTankComponent = oiltank_ns.class_(
     "OilTankComponent", sensor.Sensor, cg.PollingComponent
 )
 
-CONFIG_SCHEMA = (
-    cv.schema(
+CONFIG_SCHEMA = cv.Schema(
         {
             cv.GenerateID(): cv.declare_id(OilTankComponent),
             
@@ -44,9 +43,8 @@ CONFIG_SCHEMA = (
                 device_class=DEVICE_CLASS_VOLUME_STORAGE,
             )
         }
-    )
-    .extend(cv.polling_component_schema("60s"))
-)
+    ).extend(cv.polling_component_schema("60s"))
+
 
 
 async def to_code(config):
