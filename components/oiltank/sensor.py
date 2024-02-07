@@ -27,10 +27,10 @@ CONFIG_SCHEMA = cv.Schema(
         {
             cv.GenerateID(): cv.declare_id(OilTankComponent),
             
-            cv.Optional(CONF_TANK_HEIGHT, default=27): cv.positive_float, # inches
-            cv.Optional(CONF_TANK_WIDTH, default=44): cv.positive_float,  # inches
-            cv.Optional(CONF_TANK_LENGTH, default=72): cv.positive_float, # inches
-            cv.Optional(CONF_SENSOR_OFFSET, defaut=6): cv.positive_float, # cm
+            cv.Optional(CONF_TANK_HEIGHT, default=27.0): cv.positive_float, # inches
+            cv.Optional(CONF_TANK_WIDTH, default=44.0): cv.positive_float,  # inches
+            cv.Optional(CONF_TANK_LENGTH, default=72.0): cv.positive_float, # inches
+            cv.Optional(CONF_SENSOR_OFFSET, defaut=6.0): cv.positive_float, # cm
             cv.Required(CONF_SENSOR_NAME): cv.string,                     # name of the ultrasonic sensor
             
             # Sensor component config
