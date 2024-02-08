@@ -35,6 +35,7 @@ CONFIG_SCHEMA = cv.Schema(
         {
             cv.GenerateID(): cv.declare_id(OilTankComponent),
             
+            # Configuration variables
             cv.Optional(CONF_TANK_HEIGHT, default=27.0): cv.positive_float,  # inches
             cv.Optional(CONF_TANK_WIDTH, default=44.0): cv.positive_float,   # inches
             cv.Optional(CONF_TANK_LENGTH, default=60.0): cv.positive_float,  # inches
@@ -42,7 +43,7 @@ CONFIG_SCHEMA = cv.Schema(
             cv.Optional(CONF_FILL_LIMIT, default=250.0): cv.positive_float, # gal
             cv.Required(CONF_DISTANCE_SENSOR): cv.use_id(sensor.Sensor),     # name of the ultrasonic sensor
             
-            # Sensor component config
+            # Remaining volume sensor
             cv.Required(CONF_REMAINING_VOLUME): sensor.sensor_schema(
                 OilTankComponent,
                 unit_of_measurement=UNIT_GAL,
@@ -51,6 +52,8 @@ CONFIG_SCHEMA = cv.Schema(
                 state_class=STATE_CLASS_MEASUREMENT,
                 device_class=DEVICE_CLASS_VOLUME_STORAGE,
             ),
+            
+            # Remaining percentage sensor
             cv.Required(CONF_REMAINING_PERCENTAGE): sensor.sensor_schema(
                 OilTankComponent,
                 unit_of_measurement=UNIT_PERCENT,
@@ -61,7 +64,7 @@ CONFIG_SCHEMA = cv.Schema(
         }
     ).extend(cv.polling_component_schema("60s"))
 
-
+# Code generation
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
