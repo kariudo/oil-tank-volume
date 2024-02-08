@@ -1,0 +1,10 @@
+ sensor:
+  - platform: oiltank
+    id: ${esp_id}_oiltank
+    sensor_offset: 2
+    distance_sensor_id: ${esp_id}_us
+    fill_limit: 250
+    remaining_percentage:
+      name: "Remaining Percentage"
+    remaining_volume:
+      name: "Remaining Volume"

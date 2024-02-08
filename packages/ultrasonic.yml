@@ -1,0 +1,26 @@
+sensor:
+  # Ultrasonic distance sensor
+  - platform: ultrasonic
+    id: ${esp_id}_us
+    trigger_pin: 3
+    echo_pin: 4
+    name: "Distance to Oil"
+    unit_of_measurement: cm
+    update_interval: 1s
+    pulse_time: 10us
+    # sensor can probably only read about 2m, but the timeout needs to be higher or it won't return values
+    timeout: 6.0m
+    filters:
+      - calibrate_linear:
+          method: least_squares
+          datapoints:
+            # Calibrate based on dipstick measurement, assume linear inaccuracy (might be polynomial, but I need weeks of dipstick data to work that out)
+            - .290 -> .130 # Measured at 5 1/8" with a tape when sensor was reading .290m.
+            - .680 -> .680 # The measurement when the tank was basically empty seemed correct, so well use that as a the high end for the linear.
+      # This gets us cm
+      - multiply: 100
+      # This smooths out the data to a minute of average data
+      - sliding_window_moving_average:
+          window_size: 60
+          send_every: 60
+          send_first_at: 15
