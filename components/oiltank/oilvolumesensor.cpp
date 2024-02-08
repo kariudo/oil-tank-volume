@@ -1,4 +1,3 @@
-#pragma once
 #include "esphome/core/component.h"
 #include "esphome/core/helpers.h"
 #include "esphome/components/sensor/sensor.h"
@@ -11,7 +10,7 @@ namespace oiltank {
 
 static const char *TAG = "oiltank.sensor";
 
-void OilTankComponent::update() override {
+void OilTankComponent::update() {
   float distance_reading = this->distance_sensor->get_state();
   // Get the ID of the ultrasonic sensor
   ESP_LOGI(TAG, "Distance Sensor: %s", this->distance_sensor->get_name());

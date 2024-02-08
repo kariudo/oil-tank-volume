@@ -11,7 +11,7 @@ namespace oiltank {
 
 class OilTankComponent : public sensor::Sensor, public PollingComponent {
  public:
-  void update() override {};
+  void update() override;
   void set_tank_dimensions(float height, float length, float width) {
       tank_height = height;
       tank_length = length;
