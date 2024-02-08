@@ -22,7 +22,7 @@ CONF_SENSOR_OFFSET = "sensor_offset"
 CONF_DISTANCE_SENSOR = "distance_sensor_id"
 CONF_FILL_LIMIT = "fill_limit"
 
-INON_WATER_PERCENT = "mdi:water-percent"
+ICON_WATER_PERCENT = "mdi:water-percent"
 ICON_STORAGE_TANK = "mdi:storage-tank"
 UNIT_GAL = "gal"
 
@@ -50,7 +50,7 @@ CONFIG_SCHEMA = cv.Schema(
                 accuracy_decimals=2,
                 state_class=STATE_CLASS_MEASUREMENT,
                 device_class=DEVICE_CLASS_VOLUME_STORAGE,
-            )
+            ),
             cv.Required(CONF_REMAINING_PERCENTAGE): sensor.sensor_schema(
                 OilTankComponent,
                 unit_of_measurement=UNIT_PERCENT,
