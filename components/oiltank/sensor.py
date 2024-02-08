@@ -11,6 +11,8 @@ import esphome.config_validation as cv
 CODEOWNERS = ["@kariudo"]
 DEPENDENCIES = []
 
+AUTO_LOAD = ["sensor"]
+
 CONF_REMAINING_VOLUME = "remaining_volume"
 CONF_TANK_HEIGHT = "tank_height"
 CONF_TANK_WIDTH = "tank_width"

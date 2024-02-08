@@ -1,5 +1,5 @@
 #include <iostream>
-#include "oiltank.hpp"
+#include "oiltank.h"
 
 int main(int argc, char* argv[]) {
   double distanceToOil; // cm
@@ -17,8 +17,8 @@ int main(int argc, char* argv[]) {
 
   double airCm = distanceToOil - distanceSensorEmbedded; // cm
   double airInches = airCm * 0.39370;
-  double tankHeight = 28;
-  double tankLength = 72;
+  double tankHeight = 27.0;
+  double tankLength = 60.5;
   double tankWidth = 44;
   double inches = tankHeight - airInches; // convert from cm
   double gallons = vol_oval_h(inches, tankLength, tankWidth, tankHeight);
