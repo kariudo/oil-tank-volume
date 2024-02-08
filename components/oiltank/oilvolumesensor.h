@@ -18,10 +18,10 @@ class OilTankComponent : public sensor::Sensor, public PollingComponent {
       tank_length_ = length;
       tank_width_ = width;
   }
-  void set_distance_sensor(Sensor *sensor) {
+  void set_distance_sensor(sensor::Sensor *sensor) {
       distance_sensor = sensor;
   }
-  void set_volume_sensor(Sensor *sensor) {
+  void set_volume_sensor(sensor::Sensor *sensor) {
       volume_sensor_ = sensor;
   }
   void set_sensor_offset(float offset) {
@@ -30,8 +30,8 @@ class OilTankComponent : public sensor::Sensor, public PollingComponent {
 
 
  protected:
-  Sensor *volume_sensor_;
-  Sensor *distance_sensor_;
+  sensor::Sensor *volume_sensor_;
+  sensor::Sensor *distance_sensor_;
   float sensor_offset_;
   float tank_height_;
   float tank_length_;
