@@ -31,8 +31,8 @@ CONFIG_SCHEMA = cv.Schema(
             
             cv.Optional(CONF_TANK_HEIGHT, default=27.0): cv.positive_float, # inches
             cv.Optional(CONF_TANK_WIDTH, default=44.0): cv.positive_float,  # inches
-            cv.Optional(CONF_TANK_LENGTH, default=72.0): cv.positive_float, # inches
-            cv.Optional(CONF_SENSOR_OFFSET, default=6.0): cv.positive_float, # cm
+            cv.Optional(CONF_TANK_LENGTH, default=60.0): cv.positive_float, # inches
+            cv.Optional(CONF_SENSOR_OFFSET, default=2.0): cv.positive_float, # cm
             cv.Required(CONF_DISTANCE_SENSOR): cv.use_id(sensor.Sensor),                    # name of the ultrasonic sensor
             
             # Sensor component config
@@ -59,5 +59,5 @@ async def to_code(config):
         
         distsensor = await cg.get_variable(config[CONF_DISTANCE_SENSOR])
         cg.add(var.set_distance_sensor(distsensor))
-        
+        cg.add(var.set_sensor_offset(config.get(CONF_SENSOR_OFFSET)))
         cg.add(var.set_tank_dimensions(config.get(CONF_TANK_HEIGHT), config.get(CONF_TANK_LENGTH), config.get(CONF_TANK_WIDTH)))
