@@ -1,6 +1,8 @@
 #include <cmath>
 #include <iostream>
 #include "oiltank.h"
+namespace kariudo {
+namespace oiltank {
 
 /**
  * Calculate the volume of an oval-shaped object with a hole through it, given the outer height, total length, total width, and hole height.
@@ -74,3 +76,6 @@ double vol_rect(double oh, double tl, double tw, double th) {
   oh = std::min(oh, th);
   return std::max(tl * tw * oh / 231, 0.0);
 }
+
+}  // namespace oiltank
+}  // namespace kariudo
