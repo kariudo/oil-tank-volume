@@ -25,7 +25,7 @@ class OilTankComponent : public sensor::Sensor, public PollingComponent {
   void set_distance_sensor(sensor::Sensor *sensor) {
       distance_sensor_ = sensor;
   }
-  void set_percent_sensor(sensor::Sensor *sensor) {
+  void set_fill_percent_sensor(sensor::Sensor *sensor) {
       fill_percent_sensor_ = sensor;
   }
   void set_volume_sensor(sensor::Sensor *sensor) {

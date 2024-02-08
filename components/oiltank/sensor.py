@@ -73,7 +73,7 @@ async def to_code(config):
     cg.add(var.set_volume_sensor(remaining_volume_sensor))
     
     remaining_percentage_sensor = await sensor.new_sensor(config[CONF_REMAINING_PERCENTAGE])
-    cg.add(var.set_percentage_sensor(remaining_percentage_sensor))
+    cg.add(var.set_fill_percent_sensor(remaining_percentage_sensor))
     
     distance_sensor = await cg.get_variable(config[CONF_DISTANCE_SENSOR])
     cg.add(var.set_distance_sensor(distance_sensor))
