@@ -16,10 +16,12 @@ void OilTankComponent::update() {
   // Get the ID of the ultrasonic sensor
   ESP_LOGI(TAG, "Distance Sensor: %s", this->distance_sensor->get_name());
   ESP_LOGI(TAG, "Distance Sensor State: %f", distance_reading);
-  // Calculate the volume in gallons
-  float volume = kariudo::oiltank::vol_oval_h(distance_reading - this->sensor_offset, this->tank_length, this->tank_width, this->tank_height);
-  // Publish the state
-  this->publish_state(volume);
+
+  // TODO Re:enable this when everything isnt broken
+  // // Calculate the volume in gallons
+  // float volume = kariudo::oiltank::vol_oval_h(distance_reading - this->sensor_offset, this->tank_length, this->tank_width, this->tank_height);
+  // // Publish the state
+  // this->publish_state(volume);
 }
 
 
