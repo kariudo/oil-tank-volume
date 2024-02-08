@@ -21,7 +21,9 @@ void OilTankComponent::update() {
     } else {
       ESP_LOGI(TAG, "Distance Sensor (%s) State: %f, calculating volume.", this->distance_sensor_->get_name(), distance_reading);
       if (this->volume_sensor_ != nullptr) {
-        float volume = kariudo::oiltank::vol_oval_h(distance_reading - this->sensor_offset_, this->tank_length_, this->tank_width_, this->tank_height_);
+        bool us_cm = this->distance_sensor_->get_unit_of_measurement() == "cm";
+        distance_reading = (distance_reading - this->sensor_offset_) * (us_cm ? 0.393701 : 1); // convert cm to inches if needed
+        float volume = kariudo::oiltank::vol_oval_h(distance_reading, this->tank_length_, this->tank_width_, this->tank_height_);
         ESP_LOGI(TAG, "Volume Calculated as: %f, publishing state.", volume);
         this->volume_sensor_->publish_state(volume);
       } else {
