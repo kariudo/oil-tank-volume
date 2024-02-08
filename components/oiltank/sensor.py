@@ -40,7 +40,7 @@ CONFIG_SCHEMA = cv.Schema(
             cv.Optional(CONF_TANK_WIDTH, default=44.0): cv.positive_float,   # inches
             cv.Optional(CONF_TANK_LENGTH, default=60.0): cv.positive_float,  # inches
             cv.Optional(CONF_SENSOR_OFFSET, default=2.0): cv.positive_float, # cm
-            cv.Optional(CONF_FILL_LIMIT, default=250.0): cv.positive_float, # gal
+            cv.Optional(CONF_FILL_LIMIT, default=250.0): cv.positive_float,  # gal
             cv.Required(CONF_DISTANCE_SENSOR): cv.use_id(sensor.Sensor),     # name of the ultrasonic sensor
             
             # Remaining volume sensor
