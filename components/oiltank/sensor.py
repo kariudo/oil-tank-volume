@@ -20,9 +20,12 @@ CONF_TANK_LENGTH = "tank_length"
 CONF_SENSOR_OFFSET = "sensor_offset"
 CONF_DISTANCE_SENSOR = "distance_sensor_id"
 
+ICON_STORAGE_TANK = "mdi:storage-tank"
+UNIT_GAL = "gal"
+
 oiltank_ns = cg.esphome_ns.namespace("oiltank")
 OilTankComponent = oiltank_ns.class_(
-    "OilTankComponent", sensor.Sensor, cg.PollingComponent
+    "OilTankComponent", sensor.Sensor, cg.Component
 )
 
 CONFIG_SCHEMA = sensor.sensor_schema(OilTankComponent).extend(
@@ -38,14 +41,14 @@ CONFIG_SCHEMA = sensor.sensor_schema(OilTankComponent).extend(
             # Sensor component config
             cv.Optional(CONF_REMAINING_VOLUME): sensor.sensor_schema(
                 OilTankComponent,
-                unit_of_measurement="gal",
-                icon="mdi:storage-tank",
+                unit_of_measurement=UNIT_GAL,
+                icon=ICON_STORAGE_TANK,
                 accuracy_decimals=2,
                 state_class=STATE_CLASS_MEASUREMENT,
                 device_class=DEVICE_CLASS_VOLUME_STORAGE,
             )
         }
-    ).extend(cv.polling_component_schema("60s"))
+    )#.extend(cv.polling_component_schema("60s"))
 
 
 
