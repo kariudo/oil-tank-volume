@@ -39,7 +39,7 @@ CONFIG_SCHEMA = sensor.sensor_schema(OilTankComponent).extend(
             cv.Required(CONF_DISTANCE_SENSOR): cv.use_id(sensor.Sensor),     # name of the ultrasonic sensor
             
             # Sensor component config
-            cv.Optional(CONF_REMAINING_VOLUME): sensor.sensor_schema(
+            cv.required(CONF_REMAINING_VOLUME): sensor.sensor_schema(
                 OilTankComponent,
                 unit_of_measurement=UNIT_GAL,
                 icon=ICON_STORAGE_TANK,
@@ -53,15 +53,14 @@ CONFIG_SCHEMA = sensor.sensor_schema(OilTankComponent).extend(
 
 
 async def to_code(config):
-    var = cg.new_Pvariable(config[CONF_ID])
+    var = await sensor.new_sensor(config)
     await cg.register_component(var, config)
     
-    if remaining_volume_config := config.get(CONF_REMAINING_VOLUME):
-        sens = await sensor.new_sensor(remaining_volume_config)
-        cg.add(var.set_volume_sensor(sens))
-        
-        distsensor = await cg.get_variable(config[CONF_DISTANCE_SENSOR])
-        cg.add(var.set_distance_sensor(distsensor))
-        
-        cg.add(var.set_sensor_offset(config[CONF_SENSOR_OFFSET]))
-        cg.add(var.set_tank_dimensions(config[CONF_TANK_HEIGHT], config[CONF_TANK_LENGTH], config[CONF_TANK_WIDTH]))
+    remaining_volume_sensor = await sensor.new_sensor(config[CONF_REMAINING_VOLUME])
+    cg.add(var.set_volume_sensor(remaining_volume_sensor))
+    
+    distance_sensor = await cg.get_variable(config[CONF_DISTANCE_SENSOR])
+    cg.add(var.set_distance_sensor(distance_sensor))
+    
+    cg.add(var.set_sensor_offset(config[CONF_SENSOR_OFFSET]))
+    cg.add(var.set_tank_dimensions(config[CONF_TANK_HEIGHT], config[CONF_TANK_LENGTH], config[CONF_TANK_WIDTH]))
