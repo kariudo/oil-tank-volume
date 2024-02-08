@@ -39,7 +39,7 @@ CONFIG_SCHEMA = sensor.sensor_schema(OilTankComponent).extend(
             cv.Required(CONF_DISTANCE_SENSOR): cv.use_id(sensor.Sensor),     # name of the ultrasonic sensor
             
             # Sensor component config
-            cv.required(CONF_REMAINING_VOLUME): sensor.sensor_schema(
+            cv.Required(CONF_REMAINING_VOLUME): sensor.sensor_schema(
                 OilTankComponent,
                 unit_of_measurement=UNIT_GAL,
                 icon=ICON_STORAGE_TANK,
