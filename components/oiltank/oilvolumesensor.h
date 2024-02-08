@@ -23,8 +23,15 @@ class OilTankComponent : public sensor::Sensor, public PollingComponent {
   Sensor *get_distance_sensor() {
       return distance_sensor;
   }
+  void set_volume_sensor(Sensor *sensor) {
+      volume_sensor = sensor;
+  }
+  Sensor *get_volume_sensor() {
+      return volume_sensor;
+  }
 
  protected:
+  Sensor *volume_sensor;
   Sensor *distance_sensor;
   float tank_height;
   float tank_length;

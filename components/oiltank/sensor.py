@@ -18,7 +18,7 @@ CONF_TANK_HEIGHT = "tank_height"
 CONF_TANK_WIDTH = "tank_width"
 CONF_TANK_LENGTH = "tank_length"
 CONF_SENSOR_OFFSET = "sensor_offset"
-CONF_SENSOR_NAME = "sensor_name"
+CONF_DISTANCE_SENSOR = "distance_sensor_id"
 
 oiltank_ns = cg.esphome_ns.namespace("oiltank")
 OilTankComponent = oiltank_ns.class_(
@@ -33,7 +33,7 @@ CONFIG_SCHEMA = cv.Schema(
             cv.Optional(CONF_TANK_WIDTH, default=44.0): cv.positive_float,  # inches
             cv.Optional(CONF_TANK_LENGTH, default=72.0): cv.positive_float, # inches
             cv.Optional(CONF_SENSOR_OFFSET, default=6.0): cv.positive_float, # cm
-            cv.Required(CONF_SENSOR_NAME): cv.string,                     # name of the ultrasonic sensor
+            cv.Required(CONF_DISTANCE_SENSOR): cv.use_id(sensor.Sensor),                    # name of the ultrasonic sensor
             
             # Sensor component config
             cv.Optional(CONF_REMAINING_VOLUME): sensor.sensor_schema(
@@ -55,4 +55,9 @@ async def to_code(config):
     
     if remaining_volume_config := config.get(CONF_REMAINING_VOLUME):
         sens = await sensor.new_sensor(remaining_volume_config)
-        cg.add(var.set_temperature_sensor(sens))
+        cg.add(var.set_volume_sensor(sens))
+        
+        distsensor = await cg.get_variable(config[CONF_DISTANCE_SENSOR])
+        cg.add(var.set_distance_sensor(distsensor))
+        
+        cg.add(var.set_tank_dimensions(config.get(CONF_TANK_HEIGHT), config.get(CONF_TANK_LENGTH), config.get(CONF_TANK_WIDTH)))
