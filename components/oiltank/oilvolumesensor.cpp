@@ -16,19 +16,20 @@ void OilTankComponent::setup() {}
 void OilTankComponent::update() {
   if (this->distance_sensor_->has_state()) {
     float distance_reading = this->distance_sensor_->get_state();
-    // Get the ID of the ultrasonic sensor
-    //ESP_LOGI(TAG, "Distance Sensor: %s", this->distance_sensor_->get_name());
-    ESP_LOGI(TAG, "Distance Sensor State: %f", distance_reading);
+    if (std::isnan(distance_reading)) {
+        ESP_LOGE(TAG, "Distance Sensor State: NAN, no state will be published!");
+    } else {
+      ESP_LOGI(TAG, "Distance Sensor (%s) State: %f, calculating volume.", this->distance_sensor_->get_name(), distance_reading);
+      if (this->volume_sensor_ != nullptr) {
+        float volume = kariudo::oiltank::vol_oval_h(distance_reading - this->sensor_offset, this->tank_length, this->tank_width, this->tank_height);
+        ESP_LOGI(TAG, "Volume Calculated as: %f, publishing state.", volume);
+        this->volume_sensor_->publish_state(volume);
+      } else {
+        ESP_LOGE(TAG, "Volume Sensor State: NULL, no state will be published!");
+      }
+    }
   } else {
-    ESP_LOGE(TAG, "Distance Sensor State: NULL");
-  }
-  // TODO Re:enable this when everything isnt broken
-  // // Calculate the volume in gallons
-  // // Publish the state
-  if (this->volume_sensor_ != nullptr) {
-  // float volume = kariudo::oiltank::vol_oval_h(distance_reading - this->sensor_offset, this->tank_length, this->tank_width, this->tank_height);
-    float volume = 69.69;
-    this->volume_sensor_->publish_state(volume);
+    ESP_LOGE(TAG, "Distance Sensor State: NULL, no state will be published!");
   }
 }
 
