@@ -14,6 +14,9 @@ class OilTankComponent : public sensor::Sensor, public PollingComponent {
   void setup() override;
   void update() override;
   void dump_config() override;
+  
+  float get_setup_priority() const override { return setup_priority::DATA; }
+
   void set_tank_dimensions(float height, float length, float width) {
       tank_height_ = height;
       tank_length_ = length;
@@ -31,7 +34,7 @@ class OilTankComponent : public sensor::Sensor, public PollingComponent {
 
 
  protected:
-  sensor::Sensor *volume_sensor_;
+  sensor::Sensor *volume_sensor_{nullptr};
   sensor::Sensor *distance_sensor_;
   float sensor_offset_;
   float tank_height_;

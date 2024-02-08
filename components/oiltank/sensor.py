@@ -25,12 +25,12 @@ UNIT_GAL = "gal"
 
 oiltank_ns = cg.esphome_ns.namespace("oiltank")
 OilTankComponent = oiltank_ns.class_(
-    "OilTankComponent", sensor.Sensor, cg.Component
+    "OilTankComponent", cg.PollingComponent
 )
 
-CONFIG_SCHEMA = sensor.sensor_schema(OilTankComponent).extend(
+CONFIG_SCHEMA = cv.Schema(
         {
-            # cv.GenerateID(): cv.declare_id(OilTankComponent),
+            cv.GenerateID(): cv.declare_id(OilTankComponent),
             
             cv.Optional(CONF_TANK_HEIGHT, default=27.0): cv.positive_float,  # inches
             cv.Optional(CONF_TANK_WIDTH, default=44.0): cv.positive_float,   # inches
@@ -48,12 +48,12 @@ CONFIG_SCHEMA = sensor.sensor_schema(OilTankComponent).extend(
                 device_class=DEVICE_CLASS_VOLUME_STORAGE,
             )
         }
-    )#.extend(cv.polling_component_schema("60s"))
+    ).extend(cv.polling_component_schema("10s"))
 
 
 
 async def to_code(config):
-    var = await sensor.new_sensor(config)
+    var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
     
     remaining_volume_sensor = await sensor.new_sensor(config[CONF_REMAINING_VOLUME])
