@@ -15,7 +15,7 @@ void OilTankComponent::setup() {}
 
 void OilTankComponent::update() {
   if (this->distance_sensor_->has_state()) {
-    float distance_reading = this->distance_sensor->state;
+    float distance_reading = this->distance_sensor_->state;
     // Get the ID of the ultrasonic sensor
     //ESP_LOGI(TAG, "Distance Sensor: %s", this->distance_sensor_->get_name());
     ESP_LOGI(TAG, "Distance Sensor State: %f", distance_reading);
