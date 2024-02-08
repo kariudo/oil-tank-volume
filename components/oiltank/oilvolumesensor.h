@@ -13,6 +13,7 @@ class OilTankComponent : public sensor::Sensor, public PollingComponent {
  public:
   void setup() override;
   void update() override;
+  void dump_config() override;
   void set_tank_dimensions(float height, float length, float width) {
       tank_height_ = height;
       tank_length_ = length;
