@@ -11,6 +11,8 @@ namespace oiltank {
 
 static const char *TAG = "oiltank.sensor";
 
+void OilTankComponent::setup() {}
+
 void OilTankComponent::update() {
   float distance_reading = this->distance_sensor->get_state();
   // Get the ID of the ultrasonic sensor

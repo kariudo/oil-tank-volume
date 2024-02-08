@@ -59,5 +59,6 @@ async def to_code(config):
         
         distsensor = await cg.get_variable(config[CONF_DISTANCE_SENSOR])
         cg.add(var.set_distance_sensor(distsensor))
-        cg.add(var.set_sensor_offset(config.get(CONF_SENSOR_OFFSET)))
-        cg.add(var.set_tank_dimensions(config.get(CONF_TANK_HEIGHT), config.get(CONF_TANK_LENGTH), config.get(CONF_TANK_WIDTH)))
+        
+        cg.add(var.set_sensor_offset(config[CONF_SENSOR_OFFSET]))
+        cg.add(var.set_tank_dimensions(config[CONF_TANK_HEIGHT], config[CONF_TANK_LENGTH], config[CONF_TANK_WIDTH]))
