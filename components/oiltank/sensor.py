@@ -25,9 +25,9 @@ OilTankComponent = oiltank_ns.class_(
     "OilTankComponent", sensor.Sensor, cg.PollingComponent
 )
 
-CONFIG_SCHEMA = cv.Schema(
+CONFIG_SCHEMA = sensor.sensor_schema(OilTankComponent).extend(
         {
-            cv.GenerateID(): cv.declare_id(OilTankComponent),
+            # cv.GenerateID(): cv.declare_id(OilTankComponent),
             
             cv.Optional(CONF_TANK_HEIGHT, default=27.0): cv.positive_float,  # inches
             cv.Optional(CONF_TANK_WIDTH, default=44.0): cv.positive_float,   # inches

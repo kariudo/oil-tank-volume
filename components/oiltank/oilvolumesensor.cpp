@@ -14,11 +14,14 @@ static const char *TAG = "oiltank.sensor";
 void OilTankComponent::setup() {}
 
 void OilTankComponent::update() {
-  float distance_reading = this->distance_sensor->get_state();
-  // Get the ID of the ultrasonic sensor
-  ESP_LOGI(TAG, "Distance Sensor: %s", this->distance_sensor->get_name());
-  ESP_LOGI(TAG, "Distance Sensor State: %f", distance_reading);
-
+  if (this->distance_sensor_->has_state()) {
+    float distance_reading = this->distance_sensor->state;
+    // Get the ID of the ultrasonic sensor
+    //ESP_LOGI(TAG, "Distance Sensor: %s", this->distance_sensor_->get_name());
+    ESP_LOGI(TAG, "Distance Sensor State: %f", distance_reading);
+  } else {
+    ESP_LOGE(TAG, "Distance Sensor State: NULL");
+  }
   // TODO Re:enable this when everything isnt broken
   // // Calculate the volume in gallons
   // float volume = kariudo::oiltank::vol_oval_h(distance_reading - this->sensor_offset, this->tank_length, this->tank_width, this->tank_height);
@@ -26,6 +29,7 @@ void OilTankComponent::update() {
   // this->publish_state(volume);
 }
 
+void OilTankComponent::dump_config() { LOG_SENSOR("", "Oil Tank", this); }
 
 }  // namespace oiltank
 }  // namespace esphome

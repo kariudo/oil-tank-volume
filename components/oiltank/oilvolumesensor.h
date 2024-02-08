@@ -14,36 +14,28 @@ class OilTankComponent : public sensor::Sensor, public PollingComponent {
   void setup() override;
   void update() override;
   void set_tank_dimensions(float height, float length, float width) {
-      tank_height = height;
-      tank_length = length;
-      tank_width = width;
+      tank_height_ = height;
+      tank_length_ = length;
+      tank_width_ = width;
   }
   void set_distance_sensor(Sensor *sensor) {
       distance_sensor = sensor;
   }
-  Sensor *get_distance_sensor() {
-      return distance_sensor;
-  }
   void set_volume_sensor(Sensor *sensor) {
-      volume_sensor = sensor;
-  }
-  Sensor *get_volume_sensor() {
-      return volume_sensor;
+      volume_sensor_ = sensor;
   }
   void set_sensor_offset(float offset) {
-      sensor_offset = offset;
-  }
-  float get_sensor_offset() {
-      return sensor_offset;
+      sensor_offset_ = offset;
   }
 
+
  protected:
-  Sensor *volume_sensor;
-  Sensor *distance_sensor;
-  float sensor_offset;
-  float tank_height;
-  float tank_length;
-  float tank_width;
+  Sensor *volume_sensor_;
+  Sensor *distance_sensor_;
+  float sensor_offset_;
+  float tank_height_;
+  float tank_length_;
+  float tank_width_;
 };
 
 }  // namespace oiltank
