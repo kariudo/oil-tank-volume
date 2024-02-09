@@ -40,6 +40,23 @@
           "store_path": "/nix/store/khkhbch4p1wjfl1g89gw1mszvvr7bzv0-gcc-wrapper-13.2.0"
         }
       }
+    },
+    "gdb@latest": {
+      "last_modified": "2024-01-27T14:55:31Z",
+      "resolved": "github:NixOS/nixpkgs/160b762eda6d139ac10ae081f8f78d640dd523eb#gdb",
+      "source": "devbox-search",
+      "version": "14.1",
+      "systems": {
+        "aarch64-linux": {
+          "store_path": "/nix/store/1fxzdg9mcn2br61w7rn0p6n4igl3iz1f-gdb-14.1"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/lk1bglqndajfqr9ks7ssksj60jlwan8d-gdb-14.1"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/z1wy9hzln2dmzh2fbisjwvmwajnxl8jn-gdb-14.1"
+        }
+      }
     }
   }
 }
