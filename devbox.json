@@ -1,7 +1,8 @@
 {
   "packages": [
     "gcc@latest",
-    "cmake@latest"
+    "cmake@latest",
+    "gdb@latest"
   ],
   "shell": {
     "init_hook": [
