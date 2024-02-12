@@ -11,12 +11,14 @@ sensor:
     # sensor can probably only read about 2m, but the timeout needs to be higher or it won't return values
     timeout: 6.0m
     filters:
-      - calibrate_linear:
-          method: least_squares
-          datapoints:
-            # Calibrate based on dipstick measurement, assume linear inaccuracy (might be polynomial, but I need weeks of dipstick data to work that out)
-            - .290 -> .130 # Measured at 5 1/8" with a tape when sensor was reading .290m.
-            - .680 -> .680 # The measurement when the tank was basically empty seemed correct, so well use that as a the high end for the linear.
+      ## Disabled calibration, I'm not sure if there is just a bad behavior dead spot of it reading it when its closer than 20cm? Because the reading
+      ## dropped after around that point.
+      # - calibrate_linear:
+      #     method: least_squares
+      #     datapoints:
+      #       # Calibrate based on dipstick measurement, assume linear inaccuracy (might be polynomial, but I need weeks of dipstick data to work that out)
+      #       - .290 -> .130 # Measured at 5 1/8" with a tape when sensor was reading .290m.
+      #       - .680 -> .680 # The measurement when the tank was basically empty seemed correct, so well use that as a the high end for the linear.
       # This gets us cm
       - multiply: 100
       # This smooths out the data to a minute of average data
